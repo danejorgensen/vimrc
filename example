@@ -1,0 +1,93 @@
+syntax on
+filetype plugin indent on
+set expandtab
+set encoding=utf-8
+set showmode
+set showcmd
+set wildmenu
+set ruler<
+set autoindent
+set ts=2
+set shiftwidth=2
+set hlsearch
+set showmatch
+set smartcase
+set spelllang=en_us
+set spell
+set nocompatible
+set mouse=a
+set number
+set backspace=indent,eol,start
+set listchars=tab:?\ ,eol:¬
+set list
+
+"allow backspace previous text and to previous line in insert mode
+set backspace=indent,eol,start
+
+noremap <C-ESC> :FufFile<CR>
+"noremap <C-B> :FufBuffer<CR>
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:?\ ,eol:¬
+" Turn on show invisibles
+set list
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+if !exists("*synstack")
+return
+endif
+echo map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")')
+endfunc
+
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+
+set background=light
+hi clear
+if exists("syntax_on")
+    syntax reset
+endif
+let g:colors_name="tolerable"
+
+hi Cursor guifg=white guibg=darkgreen
+
+hi Normal gui=none guifg=black guibg=white
+hi NonText gui=none guifg=orange guibg=white
+
+hi Statement gui=none guifg=blue
+hi Special gui=none guifg=red
+hi Constant gui=none guifg=darkred
+hi Comment gui=none guifg=#555555
+hi Preproc gui=none guifg=darkcyan
+hi Type gui=none guifg=darkmagenta
+hi Identifier gui=none guifg=darkgreen
+hi Title gui=none guifg=black
+
+hi StatusLine gui=none guibg=#333333 guifg=white
+hi StatusLineNC gui=none guibg=#333333 guifg=white
+hi VertSplit gui=none guibg=#333333 guifg=white
+
+hi Visual gui=none guibg=green guifg=black
+hi Search gui=none guibg=yellow
+hi Directory gui=none guifg=darkblue
+hi WarningMsg gui=none guifg=red
+hi Error gui=none guifg=white guibg=red
+hi Todo gui=none guifg=black guibg=yellow
+
+hi MoreMsg gui=none
+hi ModeMsg gui=none
+
+" Colors for set list aka show invisibles
+highlight NonText guifg=#cccccc
+highlight SpecialKey guifg=#cccccc
+highlight NonText guibg=#ffffff
+highlight SpecialKey guibg=#ffffff
+
+set backup
+set backupdir=C:\vimbackup\
+set dir=C:\vimbackup\
